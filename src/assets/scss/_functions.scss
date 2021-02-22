@@ -1,0 +1,14 @@
+// ==================================================
+// functions
+// ==================================================
+
+@function bp($value: tb) {
+  @return map-get($v-bp, $value);
+}
+@function rem($value: $v-font-size-default) {
+  @return $value/$v-font-size-default + rem;
+}
+@function vw($size, $viewport: bp(tb)) {
+  $rate: 100 / $viewport;
+  @return $rate * $size * 1vw;
+}

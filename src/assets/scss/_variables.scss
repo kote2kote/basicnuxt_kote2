@@ -1,0 +1,53 @@
+// ==================================================
+// variables
+// ==================================================
+
+// -- color --------------------
+$v-color-01: #000; // フォントカラー
+$v-color-02: #3072a6; // テーマカラー
+$v-color-03: #529bd3; // テーマカラーのマウスオーバー
+$v-color-04: #adadad; // サブテキスト
+$v-color-05: #fff; // 背景色
+$v-color-06: #f7f7f7; // タイトル等背景
+$v-color-07: #fff; // 未定
+$v-color-08: #fff; // 未定
+$v-color-09: #fff; // 未定
+$v-color-10: #fff; // 未定
+$v-color-link: $v-color-03;
+$v-color-bg: $v-color-05;
+$v-color-font: $v-color-01;
+
+.v-color-theme {
+  color: $v-color-02;
+}
+.v-color-font {
+  color: $v-color-01;
+}
+.v-color-subtext {
+  color: $v-color-04;
+}
+.v-bgcolor-theme {
+  background: $v-color-02;
+}
+.v-bgcolor-title {
+  background: $v-color-06;
+}
+
+// -- font --------------------
+$v-font-sans-serif: "Helvetica Neue", "Helvetica", "Hiragino Sans",
+  "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
+$v-font-serif: "Times New Roman", "YuMincho", "Hiragino Mincho ProN",
+  "Yu Mincho", "MS PMincho", serif;
+$v-font-size-default: 16;
+$v-font: $v-font-sans-serif;
+
+// -- breakpoints --------------------
+$v-bp: (
+  tb: 481,
+  pc: 801,
+  sm: 640,
+  md: 768,
+  lg: 1024,
+  xl: 1280,
+  wide: 1600
+) !default;

@@ -1,0 +1,206 @@
+// ==================================================
+// head common
+// ==================================================
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  font-weight: normal;
+  font-family: $v-font;
+  color: $v-color-font;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga", "kern";
+  text-rendering: optimizeLegibility;
+  background: $v-color-bg no-repeat;
+  word-wrap: break-word;
+  font-size: $v-font-size-default;
+}
+
+// a {
+//   transition: all 0.3s ease;
+//   &:hover {
+//     color: $v-color-link;
+//   }
+// }
+
+p {
+  padding-bottom: 1rem;
+}
+// -- check mode--------------------
+.cm {
+  box-sizing: border-box;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(245, 245, 245, 0.1),
+    rgba(245, 245, 245, 0.1) 10px,
+    rgba(136, 136, 136, 0.2) 0,
+    rgba(136, 136, 136, 0.2) 20px
+  );
+  border: solid 1px rgba(68, 68, 68, 0.2);
+}
+
+// -- ie --------------------
+// @media all and (-ms-high-contrast: none) {
+@media (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  /* IE10 以降にのみ適用される */
+  .ie-block {
+    display: block;
+  }
+  .ie-hidden {
+    display: none;
+  }
+}
+
+// -- debug color --------------------
+.check-mode {
+  * [class^="ly_"] {
+    outline: #dc143c 2px solid;
+  }
+  * [class^="bl_"] {
+    border: #00f 2px solid;
+  }
+  * [class^="el_"] {
+    border: #ffd700 2px solid;
+  }
+}
+.check-mode-outer {
+  * [class^="ly_"] {
+    outline: #dc143c 2px solid;
+  }
+}
+.check-mode-bl {
+  * [class^="bl_"] {
+    border: #00f 2px solid;
+  }
+}
+.check-mode-el {
+  * [class^="el_"] {
+    border: #ffd700 2px solid;
+  }
+}
+
+// -- responsive --------------------
+
+.is-tb {
+  display: none;
+  @include bp(tb) {
+    display: block;
+  }
+}
+.is-maxtb {
+  display: none;
+  @include bp(maxtb) {
+    display: block;
+  }
+}
+.is-onlytb {
+  display: none;
+  @include bp(onlytb) {
+    display: block;
+  }
+}
+.is-pc {
+  display: none;
+  @include bp(pc) {
+    display: block;
+  }
+}
+.is-maxpc {
+  display: none;
+  @include bp(maxpc) {
+    display: block;
+  }
+}
+.is-sm {
+  display: none;
+  @include bp(sm) {
+    display: block;
+  }
+}
+.is-maxsm {
+  display: none;
+  @include bp(maxsm) {
+    display: block;
+  }
+}
+.is-onlysm {
+  display: none;
+  @include bp(onlysm) {
+    display: block;
+  }
+}
+.is-md {
+  display: none;
+  @include bp(md) {
+    display: block;
+  }
+}
+.is-onlymd {
+  display: none;
+  @include bp(onlymd) {
+    display: block;
+  }
+}
+.is-lg {
+  display: none;
+  @include bp(lg) {
+    display: block;
+  }
+}
+.is-maxlg {
+  display: none;
+  @include bp(maxlg) {
+    display: block;
+  }
+}
+.is-onlylg {
+  display: none;
+  @include bp(onlylg) {
+    display: block;
+  }
+}
+.is-xl {
+  display: none;
+  @include bp(xl) {
+    display: block;
+  }
+}
+.is-maxxl {
+  display: none;
+  @include bp(maxxl) {
+    display: block;
+  }
+}
+.is-onlyxl {
+  display: none;
+  @include bp(onlyxl) {
+    display: block;
+  }
+}
+.is-maxwide {
+  display: none;
+  @include bp(maxwide) {
+    display: block;
+  }
+}
+.is-wide {
+  display: none;
+  @include bp(wide) {
+    display: block;
+  }
+}
+.is-print {
+  display: none;
+  @include bp(print) {
+    display: block;
+  }
+}
+
+// -- objectfit --------------------
+.c-object-coverIE {
+  font-family: "object-fit: cover;"; /* IE対策 */
+}

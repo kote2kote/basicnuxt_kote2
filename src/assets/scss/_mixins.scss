@@ -1,0 +1,129 @@
+// ==================================================
+// mixins
+// ==================================================
+
+//== link-colors =======================
+@mixin link-colors($color) {
+  color: $color;
+  text-decoration: none;
+  transition: initial;
+  &:hover {
+    color: lighten($color, 15%);
+    text-decoration: underline;
+  }
+  &:visited {
+    color: desaturate($color, 50%);
+  }
+}
+
+//== responsive =======================
+
+@mixin bp($value: tb) {
+  // tab and pc
+  @if $value == tb {
+    @media only screen and (min-width: bp(tb) + px) {
+      @content;
+    }
+  } @else if $value == maxtb {
+    @media only screen and (max-width: bp(tb) - 1 + px) {
+      @content;
+    }
+  } @else if $value == onlytb {
+    @media only screen and (min-width: bp(tb) + px) and (max-width: bp(pc) - 1 + px) {
+      @content;
+    }
+  } @else if $value == pc {
+    @media only screen and (min-width: bp(pc) + px) {
+      @content;
+    }
+  } @else if $value == maxpc {
+    @media only screen and (max-width: bp(pc) + px) {
+      @content;
+    }
+
+    // sm
+  } @else if $value == sm {
+    @media only screen and (min-width: bp(sm) + px) {
+      @content;
+    }
+  } @else if $value == maxsm {
+    @media only screen and (max-width: bp(sm) - 1  + px) {
+      @content;
+    }
+  } @else if $value == onlysm {
+    @media only screen and (min-width: bp(sm) + px) and (max-width: bp(md) - 1  + px) {
+      @content;
+    }
+
+    // md
+  } @else if $value == md {
+    @media only screen and (min-width: bp(md) + px) {
+      @content;
+    }
+  } @else if $value == maxmd {
+    @media only screen and (max-width: bp(md) - 1  + px) {
+      @content;
+    }
+  } @else if $value == onlymd {
+    @media only screen and (min-width: bp(md) + px) and (max-width: bp(lg) - 1  + px) {
+      @content;
+    }
+
+    // lg
+  } @else if $value == lg {
+    @media only screen and (min-width: bp(lg) + px) {
+      @content;
+    }
+  } @else if $value == maxlg {
+    @media only screen and (max-width: bp(lg) - 1  + px) {
+      @content;
+    }
+  } @else if $value == onlylg {
+    @media only screen and (min-width: bp(lg) + px) and (max-width: bp(xl) - 1  + px) {
+      @content;
+    }
+
+    // xl
+  } @else if $value == xl {
+    @media only screen and (min-width: bp(xl) + px) {
+      @content;
+    }
+  } @else if $value == maxxl {
+    @media only screen and (max-width: bp(xl) - 1  + px) {
+      @content;
+    }
+  } @else if $value == onlyxl {
+    @media only screen and (min-width: bp(xl) + px) and (max-width: bp(wide) - 1  + px) {
+      @content;
+    }
+
+    // wide
+  } @else if $value == maxwide {
+    @media only screen and (max-width: bp(wide) - 1  + px) {
+      @content;
+    }
+  } @else if $value == wide {
+    @media only screen and (min-width: bp(wide) + px) {
+      @content;
+    }
+
+    // retina
+  } @else if $value == retina {
+    @media (min-resolution: 192dpi), (-webkit-min-device-pixel-ratio: 2) {
+      @content;
+    }
+
+    // print
+  } @else if $value == print {
+    @media print {
+      @content;
+    }
+  }
+}
+
+//== ieのみ適用 =======================
+@mixin ie() {
+  @media all and (-ms-high-contrast: none) {
+    @content;
+  }
+}
