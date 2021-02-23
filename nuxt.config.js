@@ -1,5 +1,40 @@
 export default {
+  /*
+  ※ディレクトリ指定のgenerate
+  BASE_DIR=/data/2020/ccc/ npm run generate
+*/
   mode: "universal",
+  target: "static",
+  publicRuntimeConfig: {
+    MAIN_URL:
+      process.env.NODE_ENV === "production"
+        ? process.env.PROD_URL
+        : process.env.DEV_URL,
+    MAIN_REST_API:
+      process.env.NODE_ENV === "production"
+        ? process.env.PROD_REST_API
+        : process.env.DEV_REST_API,
+    MAIN_MENU_API:
+      process.env.NODE_ENV === "production"
+        ? process.env.PROD_MENU_API
+        : process.env.DEV_MENU_API
+  },
+  // env: [
+  //   {
+  //     MAIN_URL:
+  //       process.env.NODE_ENV === "production"
+  //         ? process.env.PROD_URL
+  //         : process.env.DEV_URL,
+  //     MAIN_REST_API:
+  //       process.env.NODE_ENV === "production"
+  //         ? process.env.PROD_REST_API
+  //         : process.env.DEV_REST_API,
+  //     MAIN_MENU_API:
+  //       process.env.NODE_ENV === "production"
+  //         ? process.env.PROD_MENU_API
+  //         : process.env.DEV_MENU_API
+  //   }
+  // ],
   /*
    ** Headers of the page
    */

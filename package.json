@@ -5,9 +5,9 @@
   "author": "kote2",
   "private": true,
   "scripts": {
-    "dev": "nuxt -p 5005",
+    "dev": "cross-env NODE_ENV=development nuxt -p 5005",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "cross-env NODE_ENV=production nuxt start",
     "generate": "nuxt generate",
     "test": "jest"
   },
