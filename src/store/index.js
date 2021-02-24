@@ -62,8 +62,19 @@ export const actions = {
       for (const nn of tmpCatData) {
         if (n.object_id === nn.id) {
           tmp.slug = nn.slug;
+        } else {
+          tmp.slug = tmp.object_slug;
         }
       }
+      // add dir name
+      if (tmp.object === "category") {
+        tmp.dir = "category";
+      } else if (tmp.object === "page") {
+        tmp.dir = "page";
+      } else {
+        tmp.dir = "cpt";
+      }
+
       tmpMenuDataEdit.push(tmp);
     }
     commit("setMenuData", tmpMenuDataEdit);
