@@ -17,7 +17,8 @@ export default {
     MAIN_MENU_API:
       process.env.NODE_ENV === "production"
         ? process.env.PROD_MENU_API
-        : process.env.DEV_MENU_API
+        : process.env.DEV_MENU_API,
+    PER_PAGES: process.env.PER_PAGES
   },
   // env: [
   //   {

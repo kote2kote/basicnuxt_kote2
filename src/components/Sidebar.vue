@@ -28,5 +28,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-//
+.aside {
+  a {
+    text-decoration: underline;
+  }
+}
 </style>

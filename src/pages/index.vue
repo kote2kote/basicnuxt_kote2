@@ -1,32 +1,37 @@
 <template>
   <main class="main w-full">
     <div class="inner px-8">
-      <h2 class="c-tail mb-8">メイン</h2>
-      <div class="">
-        text
-      </div>
-      <h3 class="c-tail with-margin">オプション</h3>
-      <div class="">
-        test
-      </div>
-      <h4 class="c-tail with-margin">h4.c-tail</h4>
-      <div class="">
-        test
-      </div>
-      <h5 class="c-tail with-margin">h5.c-tail</h5>
-      <div class="">
-        test
-      </div>
-      <h6 class="c-tail with-margin">h6.c-tail</h6>
-      <div class="">
-        test
-      </div>
+      <h2 class="c-tail mb-8">すべての記事</h2>
+
+      <PostList :propsPosts="allPostsData" />
     </div>
   </main>
 </template>
 
 <script>
-export default {};
+import PostList from "~/components/PostList";
+import common from "~/mixins/common";
+export default {
+  name: "Index",
+  components: {
+    PostList
+  },
+  mixins: [common],
+  async asyncData({ store }) {
+    const query = {
+      type: "posts",
+      // orderby: 'date',
+      // per_page: $config.PER_PAGES,
+      // page: 1,
+      // categories: [],
+      // tags: [],
+      // search: '',
+      // _embed: 1,
+      info: "Index"
+    };
+    await store.dispatch("getAllPosts", query);
+  }
+};
 </script>
 
 <style lang="scss" scoped>

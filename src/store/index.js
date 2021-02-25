@@ -2,7 +2,8 @@ export const state = () => ({
   testData: [],
   menuData: [],
   catData: [],
-  tagData: []
+  tagData: [],
+  allPostsData: []
 });
 
 export const mutations = {
@@ -18,6 +19,10 @@ export const mutations = {
   },
   setTagData(state, payload) {
     state.tagData = payload;
+  },
+  setAllPostsData(state, payload) {
+    console.log(payload);
+    state.allPostsData = payload;
   }
 };
 
@@ -34,18 +39,21 @@ export const actions = {
     // get catData
     // -------------------------------------
     let tmpCatData = [];
-    tmpCatData = await app.$axios.$get(
+    const resCat = await fetch(
       `${this.$config.MAIN_REST_API}/categories?per_page=100`
     );
+    tmpCatData = await resCat.json();
+
     commit("setCatData", tmpCatData);
 
     // -------------------------------------
     // get tagData
     // -------------------------------------
     let tmpTagData = [];
-    tmpTagData = await app.$axios.$get(
+    const resTag = await fetch(
       `${this.$config.MAIN_REST_API}/tags?per_page=100`
     );
+    tmpTagData = await resTag.json();
     commit("setTagData", tmpTagData);
 
     // -------------------------------------
@@ -53,7 +61,8 @@ export const actions = {
     // -------------------------------------
     let tmpMenuData = [];
     let tmpMenuDataEdit = [];
-    tmpMenuData = await app.$axios.$get(this.$config.MAIN_MENU_API);
+    const res = await fetch(this.$config.MAIN_MENU_API);
+    tmpMenuData = await res.json();
     tmpMenuData = tmpMenuData.items;
 
     // ===========> wp-api-menuはカテゴリスラッグがないので追加
@@ -80,6 +89,33 @@ export const actions = {
     commit("setMenuData", tmpMenuDataEdit);
     // console.log(tmpMenuDataEdit);
   },
+
+  // ==================================================
+  // getAllPosts
+  // ==================================================
+  async getAllPosts({ commit }, query) {
+    console.log(query);
+    let tmpPosts = [];
+    let i = 1;
+
+    const newQuery = `
+    ${this.$config.MAIN_REST_API}/posts?_embed&per_page=${
+      query.per_page ? query.per_page : this.$config.PER_PAGES
+    }&page=${query.page ? query.page : i}&categories=${
+      query.categories ? query.categories : []
+    }&categories_exclude=1&tags=${query.tags ? query.tags : []}&search=${
+      query.search ? query.search : ""
+    }
+    `;
+    // console.log(newQuery);
+    // tmpPosts = await this.$axios.$get(newQuery);
+    const res = await fetch(newQuery);
+    tmpPosts = await res.json();
+    // console.log(tmpPosts);
+
+    commit("setAllPostsData", tmpPosts);
+  },
+
   getTest({ commit }, payload) {
     commit("setPosts", payload);
   }
@@ -97,5 +133,8 @@ export const getters = {
   },
   tagData(state) {
     return state.tagData;
+  },
+  allPostsData(state) {
+    return state.allPostsData;
   }
 };

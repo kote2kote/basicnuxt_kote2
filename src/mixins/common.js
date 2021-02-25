@@ -17,6 +17,9 @@ export default {
     },
     tagData() {
       return this.$store.getters.tagData;
+    },
+    allPostsData() {
+      return this.$store.getters.allPostsData;
     }
   }
 };
