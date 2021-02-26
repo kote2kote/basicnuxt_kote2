@@ -50,7 +50,7 @@ export default {
   name: "Index",
   mixins: [common],
   async asyncData({ params, store }) {
-    console.log(params.id);
+    console.log(params.slug);
     // const query = {
     //   type: "posts",
     // orderby: 'date',
@@ -62,7 +62,7 @@ export default {
     // _embed: 1,
     //   info: "Index"
     // };
-    await store.dispatch("getPost", params.id);
+    await store.dispatch("getPost", params.slug);
   }
 };
 </script>
