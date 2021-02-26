@@ -50,7 +50,7 @@ export default {
         content: process.env.npm_package_description || ""
       }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "icons/favicon.ico" }]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/icons/favicon.ico" }]
   },
   /*
    ** Customize the progress-bar color

@@ -1,12 +1,14 @@
 export const state = () => ({
-  testData: [],
+  testData: [], // test用
   menuData: [],
   catData: [],
   tagData: [],
-  allPostsData: []
+  allPostsData: [],
+  postData: {}
 });
 
 export const mutations = {
+  // test用
   setTest(state, payload) {
     state.test = payload;
     console.log(payload);
@@ -23,10 +25,18 @@ export const mutations = {
   setAllPostsData(state, payload) {
     console.log(payload);
     state.allPostsData = payload;
+  },
+  setPostData(state, payload) {
+    state.postData = payload;
   }
 };
 
 export const actions = {
+  // test用
+  getTest({ commit }, payload) {
+    commit("setPosts", payload);
+  },
+
   // ==================================================
   // nuxtServerInit
   // ==================================================
@@ -110,20 +120,29 @@ export const actions = {
     // console.log(newQuery);
     // tmpPosts = await this.$axios.$get(newQuery);
     const res = await fetch(newQuery);
-    tmpPosts = await res.json();
+    tmpAllPosts = await res.json();
     // console.log(tmpPosts);
 
-    commit("setAllPostsData", tmpPosts);
+    commit("setAllPostsData", tmpAllPosts);
   },
 
-  getTest({ commit }, payload) {
-    commit("setPosts", payload);
+  // ==================================================
+  // getPost
+  // ==================================================
+  async getPost({ commit }, payload) {
+    const res = await fetch(
+      `${this.$config.MAIN_REST_API}/posts?_embed&slug=${payload}`
+    );
+    const tmp = await res.json();
+    const tmpPosts = tmp[0];
+
+    commit("setPostData", tmpPosts);
   }
 };
 
 export const getters = {
   test(state) {
-    return state.test;
+    return state.test; // test用
   },
   menuData(state) {
     return state.menuData;
@@ -136,5 +155,8 @@ export const getters = {
   },
   allPostsData(state) {
     return state.allPostsData;
+  },
+  postData(state) {
+    return state.postData;
   }
 };

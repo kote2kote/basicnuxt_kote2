@@ -20,6 +20,9 @@ export default {
     },
     allPostsData() {
       return this.$store.getters.allPostsData;
+    },
+    postData() {
+      return this.$store.getters.postData;
     }
   }
 };
