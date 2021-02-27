@@ -70,33 +70,60 @@ export const actions = {
     // get menuData
     // -------------------------------------
     let tmpMenuData = [];
-    let tmpMenuDataEdit = [];
     const res = await fetch(this.$config.MAIN_MENU_API);
     tmpMenuData = await res.json();
     tmpMenuData = tmpMenuData.items;
 
-    // ===========> wp-api-menuはカテゴリスラッグがないので追加
+    // ディレクトリ名とスラッグを結合
+    // ================================= //
+    let tmpMenuDataEdit = [];
     for (const n of tmpMenuData) {
-      let tmp = n;
-      for (const nn of tmpCatData) {
-        if (n.object_id === nn.id) {
-          tmp.slug = nn.slug;
-        } else {
-          tmp.slug = tmp.object_slug;
+      // カテゴリーの場合
+      if (n.object === "category") {
+        n.dir = "category";
+        for (const nn of tmpCatData) {
+          if (n.object_id === nn.id) {
+            n.slug = nn.slug;
+          }
         }
       }
-      // add dir name
-      if (tmp.object === "category") {
-        tmp.dir = "category";
-      } else if (tmp.object === "page") {
-        tmp.dir = "page";
-      } else {
-        tmp.dir = "cpt";
+      // 固定ページの場合
+      else if (n.object === "page") {
+        n.dir = "page";
+        n.slug = n.object_slug;
+      }
+      // CPTの場合
+      else {
+        n.dir = "cpt";
+        n.slug = n.object_slug;
       }
 
-      tmpMenuDataEdit.push(tmp);
+      tmpMenuDataEdit.push(n);
     }
     commit("setMenuData", tmpMenuDataEdit);
+    // return tmpMenuDataEdit;
+    // ===========> wp-api-menuはカテゴリスラッグがないので追加
+    // for (const n of tmpMenuData) {
+    //   let tmp = n;
+    //   for (const nn of tmpCatData) {
+    //     if (n.object_id === nn.id) {
+    //       tmp.slug = nn.slug;
+    //     } else {
+    //       tmp.slug = tmp.object_slug;
+    //     }
+    //   }
+    //   // add dir name
+    //   if (tmp.object === "category") {
+    //     tmp.dir = "category";
+    //   } else if (tmp.object === "page") {
+    //     tmp.dir = "page";
+    //   } else {
+    //     tmp.dir = "cpt";
+    //   }
+
+    //   tmpMenuDataEdit.push(tmp);
+    // }
+    // commit("setMenuData", tmpMenuDataEdit);
     // console.log(tmpMenuDataEdit);
   },
 
@@ -120,7 +147,7 @@ export const actions = {
     // console.log(newQuery);
     // tmpPosts = await this.$axios.$get(newQuery);
     const res = await fetch(newQuery);
-    tmpAllPosts = await res.json();
+    const tmpAllPosts = await res.json();
     // console.log(tmpPosts);
 
     commit("setAllPostsData", tmpAllPosts);

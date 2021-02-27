@@ -2,6 +2,7 @@
   <aside class="aside px-4" style="width: 300px;">
     <h5 class="c-tail">カテゴリメニュー</h5>
     <ul>
+      <li><nuxt-link to="/">トップページ</nuxt-link></li>
       <li v-for="n of propsMenuData" :key="n.id">
         <nuxt-link :to="`/${n.dir}/${n.slug}`">{{ n.title }}</nuxt-link>
         <!-- <template v-if="n.object === 'category'">
