@@ -130,25 +130,26 @@ export const actions = {
   // ==================================================
   // getAllPosts
   // ==================================================
-  async getAllPosts({ commit }, query) {
+  async getAllPosts({ commit, error }, query) {
     console.log(query);
     let tmpPosts = [];
     let i = 1;
 
     const newQuery = `
-    ${this.$config.MAIN_REST_API}/posts?_embed&per_page=${
+    ${this.$config.MAIN_REST_API}/${
+      query.type ? query.type : "posts"
+    }?_embed&per_page=${
       query.per_page ? query.per_page : this.$config.PER_PAGES
     }&page=${query.page ? query.page : i}&categories=${
       query.categories ? query.categories : []
-    }&categories_exclude=1&tags=${query.tags ? query.tags : []}&search=${
-      query.search ? query.search : ""
-    }
+    }&categories_exclude=1&tags=${query.tags ? query.tags : []}&slug=${
+      query.slug ? query.slug : ""
+    }&search=${query.search ? query.search : ""}
     `;
     // console.log(newQuery);
     // tmpPosts = await this.$axios.$get(newQuery);
     const res = await fetch(newQuery);
     const tmpAllPosts = await res.json();
-    // console.log(tmpPosts);
 
     commit("setAllPostsData", tmpAllPosts);
   },
@@ -156,13 +157,17 @@ export const actions = {
   // ==================================================
   // getPost
   // ==================================================
-  async getPost({ commit }, payload) {
+  async getPost({ commit }, query) {
     const res = await fetch(
-      `${this.$config.MAIN_REST_API}/posts?_embed&slug=${payload}`
+      `${this.$config.MAIN_REST_API}/${
+        query.type ? query.type : "posts"
+      }?_embed&slug=${query.slug}&_embed`
     );
     const tmp = await res.json();
     const tmpPosts = tmp[0];
 
+    tmpPosts.thumb = tmpPosts._embedded["wp:featuredmedia"][0].source_url;
+    console.log(tmpPosts);
     commit("setPostData", tmpPosts);
   }
 };

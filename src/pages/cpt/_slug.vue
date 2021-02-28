@@ -1,9 +1,9 @@
 <template>
   <main class="main w-full">
     <div class="inner px-8">
-      <h2 class="c-tail">{{ postData.title.rendered }}</h2>
+      <h2 class="c-tail mb-8">{{ postData.title.rendered }}</h2>
       <div class="inner">
-        <div class="w-full flex pb-8">
+        <!-- <div class="w-full flex pb-8">
           <div class="inline-block pr-2">
             <span class="font-bold">カテゴリ: </span>
             <span class="inline-block px-1">
@@ -28,15 +28,16 @@
               }}</nuxt-link>
             </span>
           </div>
-        </div>
+        </div> -->
 
         <div class="text-center pb-12">
           <img
             class="inline-block"
             style="width: 500px;"
-            :src="postData.featured_image.src"
+            :src="postData.thumb"
             alt=""
           />
+          <!-- {{ postData._embedded["wp:featuredmedia"][0].source_url }} -->
         </div>
         <div v-html="postData.content.rendered"></div>
       </div>
@@ -50,9 +51,8 @@ export default {
   name: "Index",
   mixins: [common],
   async asyncData({ params, store }) {
-    console.log(params.slug);
     const query = {
-      //   type: "posts",
+      type: "cpt",
       // orderby: 'date',
       // per_page: $config.PER_PAGES,
       // page: 1,
