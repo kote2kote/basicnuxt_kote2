@@ -151,7 +151,13 @@ export const actions = {
     const res = await fetch(newQuery);
     const tmpAllPosts = await res.json();
 
-    commit("setAllPostsData", tmpAllPosts);
+    let tmpAllPosts2 = [];
+    for (const n of tmpAllPosts) {
+      n.thumb = n._embedded["wp:featuredmedia"][0].source_url;
+      tmpAllPosts2.push(n);
+    }
+
+    commit("setAllPostsData", tmpAllPosts2);
   },
 
   // ==================================================

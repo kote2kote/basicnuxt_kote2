@@ -11,7 +11,7 @@
           <h4 class="c-tail mb-4">{{ n.title.rendered }}</h4>
           <div class="flex">
             <figure class="inline-block" style="width: 300px">
-              <img class="w-full" :src="n.featured_image.src" alt="" />
+              <img class="w-full" :src="n.thumb" alt="" />
             </figure>
             <div class="w-full px-6">
               <div v-html="setWordCount(n.excerpt.rendered)"></div>

@@ -34,7 +34,7 @@
           <img
             class="inline-block"
             style="width: 500px;"
-            :src="postData.featured_image.src"
+            :src="postData.thumb"
             alt=""
           />
         </div>
