@@ -3,6 +3,21 @@ export default {
   /*
    ** Headers of the page
    */
+  publicRuntimeConfig: {
+    MAIN_URL:
+      process.env.NODE_ENV === "production"
+        ? process.env.PROD_URL
+        : process.env.DEV_URL,
+    MAIN_REST_API:
+      process.env.NODE_ENV === "production"
+        ? process.env.PROD_REST_API
+        : process.env.DEV_REST_API,
+    MAIN_MENU_API:
+      process.env.NODE_ENV === "production"
+        ? process.env.PROD_MENU_API
+        : process.env.DEV_MENU_API,
+    PER_PAGES: process.env.PER_PAGES
+  },
   head: {
     title: process.env.npm_package_name || "",
     meta: [
