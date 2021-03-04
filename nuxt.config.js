@@ -6,6 +6,7 @@ export default {
   mode: "universal",
   target: "static",
   publicRuntimeConfig: {
+    isProd: process.env.NODE_ENV === "production" ? true : false,
     MAIN_URL:
       process.env.NODE_ENV === "production"
         ? process.env.PROD_URL
@@ -20,22 +21,6 @@ export default {
         : process.env.DEV_MENU_API,
     PER_PAGES: process.env.PER_PAGES
   },
-  // env: [
-  //   {
-  //     MAIN_URL:
-  //       process.env.NODE_ENV === "production"
-  //         ? process.env.PROD_URL
-  //         : process.env.DEV_URL,
-  //     MAIN_REST_API:
-  //       process.env.NODE_ENV === "production"
-  //         ? process.env.PROD_REST_API
-  //         : process.env.DEV_REST_API,
-  //     MAIN_MENU_API:
-  //       process.env.NODE_ENV === "production"
-  //         ? process.env.PROD_MENU_API
-  //         : process.env.DEV_MENU_API
-  //   }
-  // ],
   /*
    ** Headers of the page
    */
@@ -94,9 +79,16 @@ export default {
    ** Build configuration
    */
   build: {
+    transpile: ["vee-validate/dist/rules"],
     postcss: {
       preset: {
         autoprefixer: { grid: "autoplace" }
+      }
+    },
+    terser: {
+      // trueでconsoleを消す(開発用時false)
+      terserOptions: {
+        compress: { drop_console: true }
       }
     },
     /*

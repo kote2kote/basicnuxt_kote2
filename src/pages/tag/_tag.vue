@@ -27,21 +27,13 @@ export default {
         tagName = n.name;
       }
     }
-    // console.log(params.category);
+
     const query = {
-      type: "posts",
-      // orderby: 'date',
-      // per_page: $config.PER_PAGES,
-      // page: 1,
-      // categories: catID,
       tags: tagID,
-      // search: '',
-      // _embed: 1,
       info: "Tag"
     };
     await store.dispatch("getAllPosts", query);
     return { tagName: tagName };
-    // console.log(tagName);
   }
 };
 </script>

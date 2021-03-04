@@ -27,16 +27,9 @@ export default {
         catName = n.name;
       }
     }
-    // console.log(params.category);
     const query = {
       type: "posts",
-      // orderby: 'date',
-      // per_page: $config.PER_PAGES,
-      // page: 1,
       categories: catID,
-      // tags: [],
-      // search: '',
-      // _embed: 1,
       info: "Category"
     };
     await store.dispatch("getAllPosts", query);

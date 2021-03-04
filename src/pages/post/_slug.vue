@@ -52,16 +52,7 @@ export default {
   async asyncData({ params, store }) {
     console.log(params.slug);
     const query = {
-      //   type: "posts",
-      // orderby: 'date',
-      // per_page: $config.PER_PAGES,
-      // page: 1,
-      // categories: [],
-      // tags: [],
-      // search: '',
       slug: params.slug
-      // _embed: 1,
-      //   info: "Index"
     };
     await store.dispatch("getPost", query);
   }

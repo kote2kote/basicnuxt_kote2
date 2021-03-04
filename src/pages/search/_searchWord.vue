@@ -19,28 +19,13 @@ export default {
   mixins: [common],
   async asyncData({ store, params, state }) {
     const keyword = encodeURI(params.searchWord);
-
-    // for (const n of store.state.tagData) {
-    //   if (n.slug === params.tag) {
-    //     tagID.push(n.id);
-    //     tagName = n.name;
-    //   }
-    // }
-    // console.log(params.category);
     const query = {
       type: "posts",
-      // orderby: 'date',
-      // per_page: $config.PER_PAGES,
-      // page: 1,
-      // categories: catID,
-      // tags: tagID,
       search: keyword,
-      // _embed: 1,
       info: "Search"
     };
     await store.dispatch("getAllPosts", query);
     return { searchWord: params.searchWord };
-    // console.log(tagName);
   }
 };
 </script>
