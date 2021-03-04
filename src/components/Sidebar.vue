@@ -8,12 +8,15 @@
           <label for="search" class="hidden">search</label>
 
           <div class="relative">
-            <input
-              type="text"
-              v-model="keyword"
-              class="appearance-none rounded-full w-full py-2 pl-4 pr-10 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-              placeholder="search word"
-            />
+            <ValidationProvider v-slot="{ errors }">
+              <input
+                type="text"
+                v-model="keyword"
+                class="appearance-none rounded-full w-full py-2 pl-4 pr-10 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                placeholder="search word"
+              />
+              <span>{{ errors[0] }}</span>
+            </ValidationProvider>
             <button @click="onSearch" class="inline-block w-4 absolute">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,6 +49,8 @@
 </template>
 
 <script>
+import { ValidationProvider } from "vee-validate";
+
 export default {
   name: "Sidebar",
   props: {
@@ -56,6 +61,10 @@ export default {
       keyword: ""
     };
   },
+  components: {
+    ValidationProvider
+  },
+
   methods: {
     onSearch() {
       this.$router.push(`/search/${this.keyword}`);

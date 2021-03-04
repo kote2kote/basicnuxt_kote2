@@ -24,7 +24,8 @@
     "cross-env": "^7.0.3",
     "node-sass": "^5.0.0",
     "nuxt": "^2.0.0",
-    "sass-loader": "^10.1.1"
+    "sass-loader": "^10.1.1",
+    "vee-validate": "^3.4.5"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^1.0.0",
