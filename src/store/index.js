@@ -23,7 +23,7 @@ export const mutations = {
     state.tagData = payload;
   },
   setAllPostsData(state, payload) {
-    console.log(payload);
+    // console.log(payload);
     state.allPostsData = payload;
   },
   setPostData(state, payload) {
@@ -135,18 +135,31 @@ export const actions = {
     let tmpPosts = [];
     let i = 1;
 
+    // const newQuery = `
+    // ${this.$config.MAIN_REST_API}/${
+    //   query.type ? query.type : "posts"
+    // }?_embed&per_page=${
+    //   query.per_page ? query.per_page : this.$config.PER_PAGES
+    // }&page=${query.page ? query.page : i}&categories=${
+    //   query.categories ? query.categories : []
+    // }&categories_exclude=1&tags=${query.tags ? query.tags : []}&slug=${
+    //   query.slug ? query.slug : ""
+    // }&search=${query.search ? query.search : ""}
+    // `;
+
     const newQuery = `
     ${this.$config.MAIN_REST_API}/${
       query.type ? query.type : "posts"
     }?_embed&per_page=${
       query.per_page ? query.per_page : this.$config.PER_PAGES
-    }&page=${query.page ? query.page : i}&categories=${
-      query.categories ? query.categories : []
-    }&categories_exclude=1&tags=${query.tags ? query.tags : []}&slug=${
+    }&page=${query.page ? query.page : i}&${
+      query.categories ? "categories=".query.categories : ""
+    }&categories_exclude=1&${query.tags ? "tags=".query.tags : ""}&slug=${
       query.slug ? query.slug : ""
     }&search=${query.search ? query.search : ""}
     `;
-    // console.log(newQuery);
+
+    console.log(newQuery);
     // tmpPosts = await this.$axios.$get(newQuery);
     const res = await fetch(newQuery);
     const tmpAllPosts = await res.json();
@@ -173,7 +186,7 @@ export const actions = {
     const tmpPosts = tmp[0];
 
     tmpPosts.thumb = tmpPosts._embedded["wp:featuredmedia"][0].source_url;
-    console.log(tmpPosts);
+    // console.log(tmpPosts);
     commit("setPostData", tmpPosts);
   }
 };

@@ -85,25 +85,25 @@ p {
 
 // -- responsive --------------------
 
-.is-tb {
+.is-min-tb {
   display: none;
   @include bp(tb) {
     display: block;
   }
 }
-.is-maxtb {
+.is-max-tb {
   display: none;
   @include bp(maxtb) {
     display: block;
   }
 }
-.is-onlytb {
+.is-tb {
   display: none;
   @include bp(onlytb) {
     display: block;
   }
 }
-.is-pc {
+.is-min-pc {
   display: none;
   @include bp(pc) {
     display: block;
@@ -115,79 +115,79 @@ p {
     display: block;
   }
 }
-.is-sm {
+.is-min-sm {
   display: none;
   @include bp(sm) {
     display: block;
   }
 }
-.is-maxsm {
+.is-max-sm {
   display: none;
   @include bp(maxsm) {
     display: block;
   }
 }
-.is-onlysm {
+.is-sm {
   display: none;
   @include bp(onlysm) {
     display: block;
   }
 }
-.is-md {
+.is-min-md {
   display: none;
   @include bp(md) {
     display: block;
   }
 }
-.is-onlymd {
+.is-md {
   display: none;
   @include bp(onlymd) {
     display: block;
   }
 }
-.is-lg {
+.is-min-lg {
   display: none;
   @include bp(lg) {
     display: block;
   }
 }
-.is-maxlg {
+.is-max-lg {
   display: none;
   @include bp(maxlg) {
     display: block;
   }
 }
-.is-onlylg {
+.is-lg {
   display: none;
   @include bp(onlylg) {
     display: block;
   }
 }
-.is-xl {
+.is-min-xl {
   display: none;
   @include bp(xl) {
     display: block;
   }
 }
-.is-maxxl {
+.is-max-xl {
   display: none;
   @include bp(maxxl) {
     display: block;
   }
 }
-.is-onlyxl {
+.is-xl {
   display: none;
   @include bp(onlyxl) {
     display: block;
   }
 }
-.is-maxwide {
+.is-max-wide {
   display: none;
   @include bp(maxwide) {
     display: block;
   }
 }
-.is-wide {
+.is-min-wide {
   display: none;
   @include bp(wide) {
     display: block;
