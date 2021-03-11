@@ -135,31 +135,18 @@ export const actions = {
     let tmpPosts = [];
     let i = 1;
 
-    // const newQuery = `
-    // ${this.$config.MAIN_REST_API}/${
-    //   query.type ? query.type : "posts"
-    // }?_embed&per_page=${
-    //   query.per_page ? query.per_page : this.$config.PER_PAGES
-    // }&page=${query.page ? query.page : i}&categories=${
-    //   query.categories ? query.categories : []
-    // }&categories_exclude=1&tags=${query.tags ? query.tags : []}&slug=${
-    //   query.slug ? query.slug : ""
-    // }&search=${query.search ? query.search : ""}
-    // `;
-
     const newQuery = `
     ${this.$config.MAIN_REST_API}/${
       query.type ? query.type : "posts"
     }?_embed&per_page=${
       query.per_page ? query.per_page : this.$config.PER_PAGES
-    }&page=${query.page ? query.page : i}&${
-      query.categories ? "categories=".query.categories : ""
-    }&categories_exclude=1&${query.tags ? "tags=".query.tags : ""}&slug=${
-      query.slug ? query.slug : ""
-    }&search=${query.search ? query.search : ""}
+    }&page=${query.page ? query.page : i}&categories_exclude=1&search=${
+      query.search ? query.search : ""
+    }${query.categories ? "&categories=" + query.categories : []}
+    ${query.tags ? "&tags=" + query.tags : []}
     `;
 
-    console.log(newQuery);
+    // console.log(newQuery);
     // tmpPosts = await this.$axios.$get(newQuery);
     const res = await fetch(newQuery);
     const tmpAllPosts = await res.json();

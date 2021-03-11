@@ -55,6 +55,45 @@ export default {
       slug: params.slug
     };
     await store.dispatch("getPost", query);
+  },
+  head() {
+    return {
+      title: `${this.postData.title}`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.postData.excerpt
+        },
+        { property: "og:image", content: this.postData.thumbnail.src },
+        {
+          property: "og:image:secure_url",
+          content: this.postData.thumbnail.src
+        },
+        {
+          hid: "og:url",
+          property: "og:url",
+          content: `${this.$config.MAIN_URL}/post/${this.postData.slug}`
+        },
+        {
+          hid: "og:title",
+          property: "og:title",
+          content: `${this.postData.title}`
+        },
+        { hid: "og:type", property: "og:type", content: "article" },
+        {
+          hid: "og:description",
+          property: "og:description",
+          content: this.postData.excerpt
+        }
+      ],
+      link: [
+        {
+          rel: "canonical",
+          href: `${this.$config.MAIN_URL}/post/${this.postData.slug}`
+        }
+      ]
+    };
   }
 };
 </script>

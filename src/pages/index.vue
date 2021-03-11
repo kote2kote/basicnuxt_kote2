@@ -16,6 +16,12 @@ export default {
   components: {
     PostList
   },
+  data() {
+    return {
+      title: "",
+      description: ""
+    };
+  },
   mixins: [common],
   async asyncData({ store }) {
     const query = {
@@ -30,6 +36,19 @@ export default {
       info: "Index"
     };
     await store.dispatch("getAllPosts", query);
+  },
+  head() {
+    return {
+      title: this.title,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.description
+        }
+      ],
+      link: [{ rel: "canonical", href: "https://kot2.tokyo" }]
+    };
   }
 };
 </script>

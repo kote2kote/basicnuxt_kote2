@@ -16,6 +16,12 @@ export default {
   components: {
     PostList
   },
+  data() {
+    return {
+      title: "",
+      description: ""
+    };
+  },
   mixins: [common],
   async asyncData({ store, params, state }) {
     const keyword = encodeURI(params.searchWord);
@@ -26,6 +32,24 @@ export default {
     };
     await store.dispatch("getAllPosts", query);
     return { searchWord: params.searchWord };
+  },
+  head() {
+    return {
+      title: `[${this.$route.params.searchWord}]に関する記事一覧`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.description
+        }
+      ],
+      link: [
+        {
+          rel: "canonical",
+          href: `https://kote2.tokyo/search/${this.$route.params.searchWord}`
+        }
+      ]
+    };
   }
 };
 </script>

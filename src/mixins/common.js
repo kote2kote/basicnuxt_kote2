@@ -8,6 +8,9 @@ export default {
   //     }
   //   }
   // },
+  mounted() {
+    objectFitImages();
+  },
   computed: {
     menuData() {
       return this.$store.getters.menuData;

@@ -16,6 +16,12 @@ export default {
   components: {
     PostList
   },
+  data() {
+    return {
+      title: "",
+      description: ""
+    };
+  },
   mixins: [common],
   async asyncData({ store, params, state }) {
     console.log(store.state.tagData);
@@ -34,6 +40,18 @@ export default {
     };
     await store.dispatch("getAllPosts", query);
     return { tagName: tagName };
+  },
+  head() {
+    return {
+      title: `[タグ: ${this.tagName}]の記事一覧`,
+      meta: [
+        {
+          hid: "description",
+          name: "description",
+          content: this.description
+        }
+      ]
+    };
   }
 };
 </script>
