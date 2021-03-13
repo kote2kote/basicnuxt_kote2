@@ -31,11 +31,11 @@
         </div>
 
         <div class="text-center pb-12">
-          <img
-            class="inline-block"
-            style="width: 500px;"
+          <nuxt-img
             :src="postData.thumb"
-            alt=""
+            quality="70"
+            sizes="md:100% lg:500px"
+            class="inline-block"
           />
         </div>
         <div v-html="postData.content.rendered"></div>
