@@ -138,12 +138,8 @@ export default {
   buildModules: [
     // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     "@nuxtjs/tailwindcss",
-    "@aceforth/nuxt-optimized-images"
+    "@nuxt/image"
   ],
-  optimizedImages: {
-    optimizeImages: true,
-    optimizeImagesInDev: true
-  },
   /*
    ** Nuxt.js modules
    */
@@ -155,6 +151,9 @@ export default {
     "@nuxtjs/dotenv",
     "@nuxtjs/style-resources"
   ],
+  image: {
+    domains: ["http://localhost:10028", "https://basic.kote2.co"]
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options

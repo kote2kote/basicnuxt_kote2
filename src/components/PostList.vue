@@ -11,12 +11,12 @@
           <h4 class="c-tail mb-4">{{ n.title.rendered }}</h4>
           <div class="flex">
             <figure class="inline-block" style="width: 300px">
-              <img class="w-full" :src="n.thumb" alt="" />
+              <nuxt-img :src="n.thumb" quality="50" width="1000" />
             </figure>
             <div class="w-full px-6">
               <div v-html="setWordCount(n.excerpt.rendered)"></div>
               <div class="pt-4">
-                <span class="font-bold">カテゴリ: </span>
+                <span class=" minlg:font-bold">カテゴリ: </span>
                 <span class="inline-block px-1">
                   <nuxt-link
                     class="relative underline"
@@ -67,6 +67,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// .testbg {
+//   background: #666;
+// }
+
 .card-link {
   &:before {
     content: "";

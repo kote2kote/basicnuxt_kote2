@@ -35,6 +35,7 @@ export default {
     }
 
     const query = {
+      type: "posts",
       tags: tagID,
       info: "Tag"
     };

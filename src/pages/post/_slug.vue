@@ -65,10 +65,10 @@ export default {
           name: "description",
           content: this.postData.excerpt
         },
-        { property: "og:image", content: this.postData.thumbnail.src },
+        { property: "og:image", content: this.postData.thumb },
         {
           property: "og:image:secure_url",
-          content: this.postData.thumbnail.src
+          content: this.postData.thumb
         },
         {
           hid: "og:url",

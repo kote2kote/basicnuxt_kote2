@@ -46,8 +46,7 @@ export default {
           name: "description",
           content: this.description
         }
-      ],
-      link: [{ rel: "canonical", href: "https://kot2.tokyo" }]
+      ]
     };
   }
 };

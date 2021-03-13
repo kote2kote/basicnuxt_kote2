@@ -11,7 +11,7 @@ export const mutations = {
   // test用
   setTest(state, payload) {
     state.test = payload;
-    console.log(payload);
+    // console.log(payload);
   },
   setMenuData(state, payload) {
     state.menuData = payload;
@@ -41,9 +41,9 @@ export const actions = {
   // nuxtServerInit
   // ==================================================
   async nuxtServerInit({ commit, state }, { app }) {
-    console.log("process.env.MAIN_URL: ", this.$config.MAIN_URL);
-    console.log("process.env.MAIN_REST_API: ", this.$config.MAIN_REST_API);
-    console.log("process.env.MAIN_MENU_API: ", this.$config.MAIN_MENU_API);
+    // console.log("process.env.MAIN_URL: ", this.$config.MAIN_URL);
+    // console.log("process.env.MAIN_REST_API: ", this.$config.MAIN_REST_API);
+    // console.log("process.env.MAIN_MENU_API: ", this.$config.MAIN_MENU_API);
 
     // -------------------------------------
     // get catData
@@ -64,6 +64,7 @@ export const actions = {
       `${this.$config.MAIN_REST_API}/tags?per_page=100`
     );
     tmpTagData = await resTag.json();
+    console.log(tmpTagData.length);
     commit("setTagData", tmpTagData);
 
     // -------------------------------------
@@ -131,9 +132,12 @@ export const actions = {
   // getAllPosts
   // ==================================================
   async getAllPosts({ commit, error }, query) {
-    console.log(query);
+    // console.log(query);
     let tmpPosts = [];
     let i = 1;
+
+    // console.log("test");
+    // console.log(query.tags);
 
     const newQuery = `
     ${this.$config.MAIN_REST_API}/${
@@ -146,6 +150,7 @@ export const actions = {
     ${query.tags ? "&tags=" + query.tags : []}
     `;
 
+    // console.log("test");
     // console.log(newQuery);
     // tmpPosts = await this.$axios.$get(newQuery);
     const res = await fetch(newQuery);
@@ -156,6 +161,9 @@ export const actions = {
       n.thumb = n._embedded["wp:featuredmedia"][0].source_url;
       tmpAllPosts2.push(n);
     }
+
+    // console.log("test");
+    // console.log(tmpAllPosts2.tags);
 
     commit("setAllPostsData", tmpAllPosts2);
   },
